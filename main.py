@@ -14,5 +14,11 @@ def create_app():
     app.config.from_object("config.app_config")
 
     db.init_app(app)
+
+    # import the controllers and activate the blueprints
+    from controllers import registerable_controllers
+
+    for controller in registerable_controllers:
+        app.register_blueprint(controller)
     
     return app
