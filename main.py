@@ -1,7 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 db = SQLAlchemy()
+
+ma = Marshmallow()
 
 def create_app():
     # using a list comprehension and multiple assignment 
@@ -14,6 +17,8 @@ def create_app():
     app.config.from_object("config.app_config")
 
     db.init_app(app)
+
+    ma.init_app(app)
 
     # import the controllers and activate the blueprints
     from controllers import registerable_controllers
